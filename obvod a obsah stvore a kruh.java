@@ -26,7 +26,7 @@ public class Main {
         double obsah = a * a;
         double obvod = a * 4;
         System.out.println("Dlžka strany je " + a);
-        System.out.println("obvod je " + obvod);
-        System.out.println("obsah je " + obsah);
+        System.out.println("obvod štvorca je " + obvod);
+        System.out.println("obsah štvorca je " + obsah);
     }
 }
