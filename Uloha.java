@@ -113,18 +113,44 @@ INSERT INTO databazovky.Orders
 
 
 
+/*Roztriedi Zipcody a ukáže začinajuce 941*/
 SELECT * FROM databazovky.Addresses WHERE zipcode LIKE "941%";
-SELECT * from databazovky.Reviews ORDER BY rating asc;
+
+/*Roztriedi hodnotenia*/
+SELECT * from databazovky.Reviews ORDER BY content asc;
+
+/*Najhoršie hodnotenie*/
 SELECT MIN(rating) AS LargestPrice FROM databazovky.Reviews;
+
+/*Najlepšie hodnotenie*/
 SELECT MAX(rating) AS LargestPrice FROM databazovky.Reviews ORDER BY rating desc;
 
+/*Vypíše adresy podľa mesta začínajuceho na S*/
 SELECT * FROM databazovky.Addresses WHERE city LIKE 'S%';
-SELECT * FROM databazovky.Addresses WHERE zipcode < 94108 AND zipcode >94106 OR zipcode=94108;
+
+/*Zipcode ktory je v rozmedzí hodnôt*/
+SELECT * FROM databazovky.Addresses WHERE zipcode < 94109 AND zipcode >94107 OR zipcode=94108;
+
+/*Vypíše ostatne adresy*/
+SELECT * FROM databazovky.Addresses WHERE zipcode < 94108 AND zipcode >940;
+
+/*Roztriedi adresy ulíc*/
 SELECT * FROM databazovky.Users WHERE Id in (SELECT user_id FROM databazovky.Addresses where street NOT LIKE "%1%");
 
+/*Zobrazí userov podľa mesta*/
 SELECT COUNT(user_id), city FROM databazovky.Addresses GROUP BY city;
+
+/*Zobrazi userov s id vačším ako 1*/
 SELECT COUNT(user_id), city FROM databazovky.Addresses GROUP BY city HAVING COUNT(user_id) > 1 ORDER BY COUNT(user_id) DESC;
+
+/*Zobrazi zipcode od najvačšieho po najmenší*/
 SELECT MIN(zipcode) AS LargestZipcode FROM databazovky.Addresses GROUP BY zipcode;
 
-SELECT * FROM databazovky.Users WHERE Id in (SELECT user_id FROM databazovky.Addresses WHERE city LIKE "San Francisco");
+/*Zobrazi userov ktorých adresa začína na 1*/
 SELECT * FROM databazovky.Users WHERE Id in (SELECT user_id FROM databazovky.Addresses where street LIKE "1%");
+
+/*Vypíše telefonne čísla podľa veľkosti */
+SELECT MIN(phone) FROM databazovky.Users GROUP BY phone;
+
+/*Zobrazí userov zo San Franciska*/
+SELECT * FROM databazovky.Users WHERE Id in (SELECT user_id FROM databazovky.Addresses WHERE city LIKE "San Francisco");
