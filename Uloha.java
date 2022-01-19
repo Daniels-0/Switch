@@ -112,20 +112,19 @@ INSERT INTO databazovky.Orders
     (4, 3, 3);
 
 
-/*4*/
+
 SELECT * FROM databazovky.Addresses WHERE zipcode LIKE "941%";
 SELECT * from databazovky.Reviews ORDER BY rating asc;
 SELECT MIN(rating) AS LargestPrice FROM databazovky.Reviews;
 SELECT MAX(rating) AS LargestPrice FROM databazovky.Reviews ORDER BY rating desc;
-/*3*/
+
 SELECT * FROM databazovky.Addresses WHERE city LIKE 'S%';
 SELECT * FROM databazovky.Addresses WHERE zipcode < 94108 AND zipcode >94106 OR zipcode=94108;
 SELECT * FROM databazovky.Users WHERE Id in (SELECT user_id FROM databazovky.Addresses where street NOT LIKE "%1%");
-/*3*/
+
 SELECT COUNT(user_id), city FROM databazovky.Addresses GROUP BY city;
 SELECT COUNT(user_id), city FROM databazovky.Addresses GROUP BY city HAVING COUNT(user_id) > 1 ORDER BY COUNT(user_id) DESC;
 SELECT MIN(zipcode) AS LargestZipcode FROM databazovky.Addresses GROUP BY zipcode;
 
-/*2*/
 SELECT * FROM databazovky.Users WHERE Id in (SELECT user_id FROM databazovky.Addresses WHERE city LIKE "San Francisco");
 SELECT * FROM databazovky.Users WHERE Id in (SELECT user_id FROM databazovky.Addresses where street LIKE "1%");
